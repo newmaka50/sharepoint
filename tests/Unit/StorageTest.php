@@ -171,7 +171,6 @@ class StorageTest extends TestCase {
 
 	public function testStatDocumentLibrary() {
 		$path = '';
-		$returnSize = null;
 
 		$mtime = new \DateTime(null, new \DateTimeZone('Z'));
 		$mtime->sub(new \DateInterval('P2D'));
@@ -179,26 +178,11 @@ class StorageTest extends TestCase {
 		$returnMTime = $mtime->format('o-m-d\TH:i:se');
 		$size = FileInfo::SPACE_UNKNOWN;
 
-		$serverPath = '/' . $this->documentLibraryTitle;
-		if (trim($path, '/') !== '') {
-			$serverPath .= '/' . trim($path, '/');
-		}
-
-		$folderMock = $this->createMock(Folder::class);
-		$folderMock->expects($this->once())
-			->method('getProperty')
-			->with('ServerRelativeUrl')
-			->willReturn($serverPath);
-
 		$dLibMock = $this->createMock(SPList::class);
 		$dLibMock->expects($this->once())
 			->method('getProperty')
 			->with('LastItemModifiedDate')
 			->willReturn($returnMTime);
-		$dLibMock->expects($this->once())
-			->method('getRootFolder')
-			->with()
-			->willReturn($folderMock);
 
 		$this->client->expects($this->any())
 			->method('getDocumentLibrary')
