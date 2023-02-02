@@ -159,10 +159,6 @@ class StorageTest extends TestCase {
 			$serverPath .= '/' . trim($path, '/');
 		}
 
-		$this->client->expects($this->once())
-			->method('getDocumentLibrary')
-			->with($this->documentLibraryTitle)
-			->willReturn($spListMock);
 		$this->client->expects($this->any())
 			->method('getDocumentLibrariesRootFolder')
 			->willReturn($rootFolderMock);
