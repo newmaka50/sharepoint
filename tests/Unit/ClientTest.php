@@ -423,6 +423,7 @@ class SharePointClientTest extends TestCase {
 
 		$client = new Client(
 			$this->contextsFactory,
+			$this->createMock(LoggerInterface::class),
 			'my.sp.server',
 			$credentials,
 			[ 'forceNtlm' => $forceNtlm ]

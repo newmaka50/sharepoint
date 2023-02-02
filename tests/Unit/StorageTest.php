@@ -163,6 +163,9 @@ class StorageTest extends TestCase {
 			->method('getDocumentLibrary')
 			->with($this->documentLibraryTitle)
 			->willReturn($spListMock);
+		$this->client->expects($this->any())
+			->method('getDocumentLibrariesRootFolder')
+			->willReturn($rootFolderMock);
 		$this->client->expects($this->once())
 			->method('fetchFileOrFolder')
 			->with($serverPath)
@@ -408,6 +411,9 @@ class StorageTest extends TestCase {
 			->method('getDocumentLibrary')
 			->with($this->documentLibraryTitle)
 			->willReturn($spListMock);
+		$this->client->expects($this->any())
+			->method('getDocumentLibrariesRootFolder')
+			->willReturn($folderMock);
 
 		return [$spListMock, $folderMock];
 	}
