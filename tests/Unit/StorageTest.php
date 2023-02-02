@@ -148,12 +148,6 @@ class StorageTest extends TestCase {
 			)
 			->willReturnOnConsecutiveCalls($returnSize, $returnMTime, 'Documents');
 
-		$spListMock = $this->createMock(SPList::class);
-		$spListMock->expects($this->once())
-			->method('getRootFolder')
-			->with()
-			->willReturn($rootFolderMock);
-
 		$serverPath = $this->documentLibraryTitle;
 		if (trim($path, '/') !== '') {
 			$serverPath .= '/' . trim($path, '/');
